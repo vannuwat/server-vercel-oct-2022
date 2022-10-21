@@ -134,7 +134,7 @@ let incomingData = ""
 app.post('/api/database/magellan/sensor', (req, res) => {
   if (!res.body){
     incomingData = req.body;
-    res.status(200).send({message: "received"});
+    res.status(200).send(incomingData);
   }
 });
 
