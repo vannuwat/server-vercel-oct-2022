@@ -130,18 +130,8 @@ app.get('/api/database/bus_info/summaryTable/sorted_location/:bus_id', function(
   }
 });
 
-let incomingData = {data : ""}
 app.post('/api/database/magellan/sensor', (req, res) => {
-  if (!res.body){
-    incomingData = req.body;
-    res.status(200).send(incomingData);
-  }
-});
-
-app.get('/api/database/magellan/sensor', (req, res) => {
-  if (!res.body){
-    res.status(200).send(incomingData);
-  }
+    res.status(200).send(req.body);
 });
 
 app.listen(port, () => console.log("listening", port))
