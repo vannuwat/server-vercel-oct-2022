@@ -139,8 +139,8 @@ app.post('/api/database/magellan/sensor', (req, res) => {
   let ICCID= req.body.ICCID;
   let Sensor= req.body.Sensor;
   let sensor_data = Object.values(Sensor);
-  
-  var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('${ThingName}', ${IMEI}, ${IMSI}, ${ICCID}, ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
+  res.status(200).send(req.body);
+  var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES (${ThingName}, ${IMEI}, ${IMSI}, ${ICCID}, ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
   pool.query(sql, function (err, data) {
     if (err){
         console.log(err)
