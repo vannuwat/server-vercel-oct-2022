@@ -132,6 +132,24 @@ app.get('/api/database/bus_info/summaryTable/sorted_location/:bus_id', function(
 
 });
 
+app.post('/api/database/magellan/sensor', (req, res) => {
+  let ThingName = req.body.ThingName;
+  let IMEI= req.body.IMEI;
+  let IMSI= req.body.IMSI;
+  let ICCID= req.body.ICCID;
+  let Sensor= req.body.Sensor;
+  let sensor_data = Object.values(Sensor);
+  
+  var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('${ThingName}', ${IMEI}, ${IMSI}, ${ICCID}, ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
+  pool.query(sql, function (err, data) {
+    if (err){
+        console.log(err)
+    }
+    // console.log(data);
+  });
+  res.status(200).send(req.body);
+});
+
 var port = process.env.PORT || 5000;
 app.listen(port, () => console.log("listening", port))
 
