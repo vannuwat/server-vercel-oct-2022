@@ -130,7 +130,7 @@ app.get('/api/database/bus_info/summaryTable/sorted_location/:bus_id', function(
   }
 });
 
-let incomingData = ""
+let incomingData = {data : ""}
 app.post('/api/database/magellan/sensor', (req, res) => {
   if (!res.body){
     incomingData = req.body;
