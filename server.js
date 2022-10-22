@@ -143,11 +143,14 @@ app.post('/api/database/magellan/sensor', (req, res) => {
   var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('${ThingName}', '${IMEI}', '${IMSI}', '${ICCID}', ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
   pool.query(sql, function (err, data) {
     if (err){
-        console.log(err)
+      res.send(err);  
+       
     }
-    // console.log(data);
+    else{
+      res.status(200).send(req.body);  
+    }
+    
   });
-  res.status(200).send(req.body);
 });
 
 var port = process.env.PORT || 5000;
