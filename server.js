@@ -134,37 +134,16 @@ app.get('/api/database/bus_info/summaryTable/sorted_location/:bus_id', function(
 
 let in_data = "";
 app.post('/api/database/magellan/sensor', (req, res) => {
-  // let ThingName = req.body.ThingName;
-  // let IMEI= req.body.IMEI;
-  // let IMSI= req.body.IMSI;
-  // let ICCID= req.body.ICCID;
-  // let Sensor= req.body.Sensor;
-  // let sensor_data = Object.values(Sensor);
-  // res.status(200).send(req.body);
+  let ThingName = req.body.ThingName;
+  let IMEI= req.body.IMEI;
+  let IMSI= req.body.IMSI;
+  let ICCID= req.body.ICCID;
+  let Sensor= req.body.Sensor;
+  let sensor_data = Object.values(Sensor);
+  res.status(200).send(req.body);
   in_data = req.body;
   res.send(in_data);
-  // var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('${ThingName}', '${IMEI}', '${IMSI}', '${ICCID}', ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
-  // pool.query(sql, function (err, data) {
-  //   if (err){
-  //     res.send(err);  
-       
-  //   }
-  //   else{
-  //     res.status(200).send(req.body);  
-  //   }
-    
-  // });
-});
-
-app.get('/api/database/magellan/sensor', function(req, res) {
-  res.send(in_data);
-
-});
-
-
-app.get('/api/magellan/sensor', function(req, res) {
-  // res.send(req.body);
-  var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('dummy ThingName', 'dummy IMEI', 'dummy IMSI', 'dummy ICCID', 0, 0, 0, 'Unknown', NOW());`;
+  var sql=`INSERT INTO test_iot_info (thing_name, IMEI, IMSI, ICCID, total_passenger, in_passenger, out_passenger, location, schedule_date) VALUES ('${ThingName}', '${IMEI}', '${IMSI}', '${ICCID}', ${sensor_data[0]}, ${sensor_data[1]}, ${sensor_data[2]}, 'Unknown', NOW());`;
   pool.query(sql, function (err, data) {
     if (err){
       res.send(err);  
@@ -175,8 +154,13 @@ app.get('/api/magellan/sensor', function(req, res) {
     }
     
   });
+});
+
+app.get('/api/database/magellan/sensor', function(req, res) {
+  res.send(in_data);
 
 });
+
 
 
 var port = process.env.PORT || 5000;
