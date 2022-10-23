@@ -9,7 +9,7 @@ let in_data = "";
 
 app.post('/api/database/magellan/sensor', (req, res) => {
   in_data = req.body;
-  res.status(200).send(in_data);
+  res.status(200).send({msg : in_data});
 });
 
 app.get('/api/database/magellan/sensor', (req, res) => {
