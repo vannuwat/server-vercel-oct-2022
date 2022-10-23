@@ -1,9 +1,11 @@
+//this code is work in magellan AIS
+
 var express = require('express');
 const app = express();
 
 app.use(express.static('public'));
 app.use(express.json({limit:'1mb'}));
-app.use(express.urlencoded({extended: false}))
+// app.use(express.urlencoded({extended: false}))
 
 let in_data = "";
 
