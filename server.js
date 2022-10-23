@@ -1,8 +1,6 @@
 var express = require('express');
 const app = express();
 
-
-
 app.use(express.static('public'));
 app.use(express.json({limit:'1mb'}));
 app.use(express.urlencoded({extended: false}))
@@ -15,7 +13,7 @@ app.post('/api/database/magellan/sensor', (req, res) => {
 });
 
 app.get('/api/database/magellan/sensor', (req, res) => {
-  res.send(in_data);
+  res.send({msg : in_data});
 });
 
 
