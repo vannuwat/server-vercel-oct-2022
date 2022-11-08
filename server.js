@@ -60,6 +60,20 @@ app.get('/api/database/bus_info/summaryTable', function(req, res) {
   
 });
 
+app.get('/api/database/bus_info/now_data', function(req, res) {
+  
+  console.log('Connected!');
+  console.log(req)
+  var sql='SELECT  * FROM test_iot_info ORDER BY schedule_date DESC LIMIT 1;';
+  pool.query(sql, function (err, data) {
+  if (err){
+      console.log(err)
+  }
+  res.send(data.rows)
+  });
+
+});
+
 app.get('/api/database/bus_info/summaryTable/:bus_id', function(req, res) {
   
   const found = each_bus_info.some(e => e.bus_id === parseInt(req.params.bus_id));
@@ -134,9 +148,9 @@ app.post('/api/database/magellan/sensor', (req, res) => {
   total_pass = req.body.Sensors.TotalPassenger;
   in_pass = req.body.Sensors.InPassenger;
   out_pass = req.body.Sensors.OutPassenger;
-  lat = req.body.Sensors.Latitude;
-  log = req.body.Sensors.Logtitude;
-  location = 'Unknown';
+  // lat = req.body.Sensors.Latitude;
+  // log = req.body.Sensors.Logtitude;
+  location = req.body.Sensors.Location;
   in_data = {ThingName, IMEI, Sensors}
   var sql= `INSERT INTO test_iot_info  (thing_name, IMEI, total_passenger, in_passenger, out_passenger, location , schedule_date) 
   VALUES 
