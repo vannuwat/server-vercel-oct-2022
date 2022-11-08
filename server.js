@@ -164,7 +164,7 @@ app.post('/api/database/magellan/sensor', (req, res) => {
     }
     });
  
-  var sql= `UPDATE bus_info SET amount_user  = ${total_pass}, current_location = '${location}', next_location = 'Station2' WHERE bus_id  = 888;'`;
+  var sql= `UPDATE bus_info SET amount_user  = ${total_pass}, current_location = '${location}', next_location = 'Station2' WHERE bus_id  = 888;`;
    pool.query(sql, function (err, data) {
    if (err){
      res.status(400).send({msg : "error update sql data"});
