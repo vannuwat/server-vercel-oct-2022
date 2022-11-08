@@ -151,9 +151,9 @@ app.post('/api/database/magellan/sensor', (req, res) => {
   location = req.body.Sensors.Location;
   next_location = req.body.Sensors.NextLocation;
   in_data = {ThingName, IMEI, Sensors}
-  var sql= `INSERT INTO test_iot_info  (thing_name, IMEI, total_passenger, in_passenger, out_passenger, location, next_location , schedule_date) 
+  var sql= `INSERT INTO test_iot_info  (bus_id, thing_name, IMEI, total_passenger, in_passenger, out_passenger, location, next_location , schedule_date) 
   VALUES 
- ('${ThingName}', '${IMEI}', ${total_pass}, ${in_pass}, ${out_pass}, '${location}', '${next_location}', NOW());`;
+ (888,'${ThingName}', '${IMEI}', ${total_pass}, ${in_pass}, ${out_pass}, '${location}', '${next_location}', NOW());`;
     pool.query(sql, function (err, data) {
     if (err){
       res.status(400).send({msg : "error insert sql data"});
