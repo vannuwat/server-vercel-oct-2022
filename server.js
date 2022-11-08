@@ -50,7 +50,7 @@ app.get('/api/database/bus_info/summaryTable', function(req, res) {
   
     console.log('Connected!');
     console.log(req)
-    var sql='SELECT bus_info.bus_id, test_iot_info.total_passenger, test_iot_info.location, test_iot_info.next_location FROM bus_info INNER JOIN test_iot_info ON bus_info.bus_id = test_iot_info.bus_id ORDER BY schedule_date DESC LIMIT 1;';
+    var sql='SELECT bus_info.bus_id, bus_info.status, test_iot_info.total_passenger, test_iot_info.location, test_iot_info.next_location FROM bus_info INNER JOIN test_iot_info ON bus_info.bus_id = test_iot_info.bus_id ORDER BY schedule_date DESC LIMIT 1;';
     pool.query(sql, function (err, data) {
     if (err){
         console.log(err)
