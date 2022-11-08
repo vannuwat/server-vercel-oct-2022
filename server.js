@@ -80,7 +80,7 @@ app.get('/api/database/bus_info/summaryTable/:bus_id', function(req, res) {
 
   if (found) {
     const id = parseInt(req.params.bus_id);
-    var sql=`SELECT * FROM each_bus_info WHERE bus_id = ${id} ORDER by location,schedule_date ASC`;
+    var sql=`SELECT * FROM test_iot_info WHERE bus_id = ${id} ORDER by location,schedule_date ASC`;
     pool.query(sql, function (err, data) {
     if (err){
         console.log(err)
@@ -102,7 +102,7 @@ app.get('/api/database/bus_info/summaryTable/sorted_schedule/:bus_id', function(
 
   if (found) {
     const id = parseInt(req.params.bus_id);
-    var sql=`SELECT * FROM each_bus_info WHERE bus_id = ${id} ORDER by schedule_date ASC`;
+    var sql=`SELECT * FROM test_iot_info WHERE bus_id = ${id} ORDER by schedule_date ASC`;
     pool.query(sql, function (err, data) {
     if (err){
         console.log(err)
@@ -124,7 +124,7 @@ app.get('/api/database/bus_info/summaryTable/sorted_location/:bus_id', function(
 
   if (found) {
     const id = parseInt(req.params.bus_id);
-    var sql=`SELECT DISTINCT "location" FROM each_bus_info where bus_id = ${id} order by "location" ;`;
+    var sql=`SELECT DISTINCT "location" FROM test_iot_info where bus_id = ${id} order by "location" ;`;
     pool.query(sql, function (err, data) {
     if (err){
         console.log(err)
